@@ -1,8 +1,14 @@
 {
   "manifest_version": 3,
   "name": "NTU Course Search Helper",
-  "version": "1.0.0",
-  "description": "台大選課網站輔助工具，優化選課介面與功能",
+  "version": "1.0.1",
+  "description": "台大選課網站輔助工具，根據已加入的課表，在課程搜尋頁裡自動標示已選或衝堂",
+  
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ntu-course-search@cindylinz"
+    }
+  },
   
   "permissions": [
     "activeTab",
@@ -23,12 +29,5 @@
       "run_at": "document_end",
       "all_frames": true
     }
-  ],
-  
-  "icons": {
-    "16": "icons/icon16.png",
-    "32": "icons/icon32.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  }
+  ]
 }
