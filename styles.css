@@ -1,0 +1,14 @@
+.course-helper-label {
+    background-color: #ccc;
+    padding: 1ex;
+    border-radius: 1ex;
+    margin: 0.5em;
+    white-space: nowrap;
+    cursor: default;
+}
+.course-helper-label.chosen {
+    background-color: #cfc;
+}
+.course-helper-label.conflict {
+    background-color: #fcc;
+}
