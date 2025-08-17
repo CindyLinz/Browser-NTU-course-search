@@ -29,7 +29,7 @@ function htmlEncode(str){
 function extractCourseFieldIndex(table){
     let index = {};
     let headerTds = table.querySelector('tr').querySelectorAll('td');
-    ['流水號', '課號', '課程名稱', '授課教師', '時間教室'].forEach(field => {
+    ['序號', '流水號', '課號', '課程名稱', '授課教師', '時間教室'].forEach(field => {
         headerTds.forEach((td, i) => {
             if( td.textContent.trim() == field )
                 index[field] = i+1;
@@ -111,11 +111,11 @@ function addEmptyColumnToFirstTable(chosen) {
 
                     chosen.forEach(c => {
                         if( c.流水號 == seq ){
-                            content += '<div class="course-helper-label chosen">已選</div>';
+                            content += `<div class="course-helper-label chosen">已選 ${c.序號}</div>`;
                         }
                         else{
                             if( isSlotConflict(slots, c.slots) )
-                                content += `<div class="course-helper-label conflict" title="${c.流水號} ${c.課號} ${htmlEncode(c.課程名稱)} ${htmlEncode(c.授課教師)}">衝堂</div>`;
+                                content += `<div class="course-helper-label conflict" title="${c.流水號} ${c.課號} ${htmlEncode(c.課程名稱)} ${htmlEncode(c.授課教師)}">衝堂 ${c.序號}</div>`;
                         }
                     });
 

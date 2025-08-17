@@ -8,7 +8,7 @@
 , "permissions": []
 , "host_permissions": ["https://nol.ntu.edu.tw/nol/coursesearch/myschedule.php"]
 , "content_scripts":
-  [ { "matches": ["*://nol.ntu.edu.tw/nol/coursesearch/search*"]
+  [ { "matches": ["https://nol.ntu.edu.tw/nol/coursesearch/search*"]
     , "js": ["content.js"]
     , "css": ["styles.css"]
     , "run_at": "document_end"
