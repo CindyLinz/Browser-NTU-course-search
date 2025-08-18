@@ -6,3 +6,5 @@
 
   ![demo](demo.jpg)
   ![demo2](demo2.png)
+
+可以自行下載 ntu-course-search-addon.zip 安裝 (如果 browser 的 store 還沒 approve 的話)
