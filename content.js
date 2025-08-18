@@ -1,3 +1,5 @@
+let page_id = (''+Math.random()).substr(2);
+
 function parseSlot(slotString) {
     slotString = slotString.replace(/\(.*?\)/g, '').replace(/.*?(?=[日一二三四五六])/, '');
     let slots = {};
@@ -61,7 +63,7 @@ function extractCourseData(table){
     return courses;
 }
 
-function toggleConflict(show){
+function toggleConflict(myschedule){
     const tables = document.querySelectorAll('table');
 
     for (let table of tables) {
@@ -71,13 +73,18 @@ function toggleConflict(show){
             const allRows = table.querySelectorAll('tr');
 
             allRows.forEach((row, index) => {
-                let stat = row.querySelector('td:nth-of-type(1)').innerText;
-                if( stat.match(/衝堂/) && !stat.match(/已選/) ){
-                    if( show )
-                        row.style.display = '';
-                    else
-                        row.style.display = 'none';
-                }
+                let stat = row.querySelector('td:nth-of-type(1)').innerHTML;
+                if( stat.match(/已選/) ) return;
+
+                let show = true;
+                myschedule.forEach(c => {
+                    if( c.hide && stat.match(`>衝堂 ${c.序號}<`) )
+                      show = false;
+                });
+                if( show )
+                    row.style.display = '';
+                else
+                    row.style.display = 'none';
             });
         }
     }
@@ -103,7 +110,7 @@ function addEmptyColumnToFirstTable(chosen) {
                 let seq = row.querySelector(`td:nth-of-type(${indexes.流水號})`).textContent.trim();
                 if( !seq.match(/^\d+$/) ){
                     if( index==0 ){
-                        content += '衝堂<br><label style=white-space:nowrap><input type=radio name=conflict-toggle value=show checked> 顯示</label><br><label style=white-space:nowrap><input type=radio name=conflict-toggle value=hide> 隱藏</label>';
+                        content += '衝堂<br><button id=conflict-show-select-btn style=white-space:nowrap>切換顯示</button>';
                     }
                 }
                 else{
@@ -138,9 +145,14 @@ function addEmptyColumnToFirstTable(chosen) {
     }
 
     document.addEventListener('click', (e) => {
-        if (e.target.matches('input[name="conflict-toggle"]')) {
-            toggleConflict(e.target.value === 'show' ? 1 : 0);
+        if (e.target.id == 'conflict-show-select-btn') {
+            window.open(chrome.runtime.getURL(`conflict-show-select.html?myschedule=${encodeURIComponent(JSON.stringify(chosen))}&page_id=${page_id}`));
         }
+    });
+
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+        if( message.page_id===page_id && message.type === 'conflict-show-select' )
+            toggleConflict(message.data);
     });
 }
 
@@ -174,7 +186,6 @@ function parseMySchedule(htmlString) {
 function process() {
     fetchMySchedulePage().then(html => {
         let schedule = parseMySchedule(html);
-        console.log(schedule);
         addEmptyColumnToFirstTable(schedule);
     });
 }

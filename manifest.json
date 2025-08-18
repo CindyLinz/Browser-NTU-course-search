@@ -5,6 +5,9 @@
 , "browser_specific_settings":
   { "gecko": {"id": "ntu-course-search@cindylinz"}
   }
+, "background":
+  { "scripts": ["background.js"]
+  }
 , "permissions": []
 , "host_permissions": ["https://nol.ntu.edu.tw/nol/coursesearch/myschedule.php"]
 , "content_scripts":
@@ -13,6 +16,11 @@
     , "css": ["styles.css"]
     , "run_at": "document_end"
     , "all_frames": true
+    }
+  ]
+, "web_accessible_resources":
+  [ { "resources": ["conflict-show-select.html"]
+    , "matches": ["https://nol.ntu.edu.tw/*"]
     }
   ]
 , "icons": {"128": "icon.png"}
