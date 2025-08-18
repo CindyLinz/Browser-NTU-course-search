@@ -1,7 +1,7 @@
 { "manifest_version": 3
 , "name": "NTU Course Search Helper"
-, "version": "1.0.2"
-, "description": "台大選課網站輔助工具，根據已加入的課表，在課程搜尋頁裡自動標示已選或衝堂"
+, "version": "1.0.3"
+, "description": "台大選課網站輔助工具，根據已加入的課表，在課程搜尋頁裡自動標示已選或衝堂，也可以過濾隱藏衝堂課程"
 , "browser_specific_settings":
   { "gecko": {"id": "ntu-course-search@cindylinz"}
   }
