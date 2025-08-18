@@ -7,4 +7,5 @@
   ![demo](demo.jpg)
   ![demo2](demo2.png)
 
-可以自行下載 ntu-course-search-addon.zip 安裝 (如果 browser 的 store 還沒 approve 的話)
+Firefox 可以自行下載 ntu-course-search-addon.zip 安裝 (如果 browser 的 store 還沒 approve 的話)
+Chrome 可以從 web store [安裝](https://chromewebstore.google.com/detail/ntu-course-search-helper/edmjohemconolnoeggicplenhhbeeebl)
